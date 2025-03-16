@@ -1,4 +1,4 @@
-package balancepush_gocardless
+package main
 
 import (
 	"fmt"
