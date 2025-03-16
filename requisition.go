@@ -21,11 +21,11 @@ type Requisition struct {
 	RedirectImmediate bool      `json:"redirect_immediate"`
 }
 
-func (gc *GoCardlessClient) CreateRequisition(institution string, agreementID string) (Requisition, error) {
+func (gc *GoCardlessClient) CreateRequisition(institution string, agreementID string, redirectProto string, redirectHost string, redirectPort string, redirectPath string) (Requisition, error) {
 	var requisition Requisition
 
 	requestBody := map[string]string{
-		"redirect":       "http://localhost:3000",
+		"redirect":       fmt.Sprintf("%s://%s:%s%s", redirectProto, redirectHost, redirectPort, redirectPath),
 		"institution_id": institution,
 		"user_language":  "EN",
 		"agreement":      agreementID,
